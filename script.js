@@ -10,7 +10,9 @@ async function buscarEMostrarVideos() {
   try {
     const busca = await axios.get(urlVideos);
 
-    const videos = busca.data;
+    const videos = import.meta.env.PROD
+    ? busca.data.videos
+    : busca.data;
 
     videos.forEach((video) => {
       if (video.categoria == "") {
